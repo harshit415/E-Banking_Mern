@@ -23,24 +23,27 @@ const Withdraw = () => {
    }
   return (
     <>
-    <Container>
+   <Container fluid >
       <Row className="justify-content-center">
-      <Col xs={12} sm={8} md={6} lg={4} className="mx-auto mt-5"> 
+      <Col xs={12} sm={8} md={6} lg={6} className="mx-auto mt-5"> 
+      <Card className="pt-2" style={{paddingBottom:"20px", backgroundColor:"#010114", color:"white"}}>
       <div className="text-center">
-    <h2> Deposite Amount</h2>
-  
+    <h2> Withdraw Amount</h2>
+  <hr />
     <Form.Group as={Col} controlId="formGridEmail">
           <Form.Label>Enter Amount</Form.Label>
-          <Form.Control type="email" name="amount" value={amount}  onChange={(e)=>setAmount(e.target.value)} />
+          <Form.Control style={{ backgroundColor:"#010114", color:"white", width:"70%", margin:"auto"}} type="email" name="amount" value={amount}  onChange={(e)=>setAmount(e.target.value)} />
         </Form.Group>
         <Button className="mt-3" variant="primary" type="submit" onClick={handleSubmit} >
-        Widthdraw
+        Widthdraw money
       </Button>
         </div>
+        </Card>
         </Col>
         </Row>
-        </Container>
         <ToastContainer/>
+
+        </Container>
 
       
       

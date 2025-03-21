@@ -1,103 +1,80 @@
-import React from 'react'
+import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useState } from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { IoReorderThreeSharp } from "react-icons/io5"
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { IoReorderThreeSharp } from "react-icons/io5";
 
 const Dash = () => {
-  const username = localStorage.getItem("username")
-  const email = localStorage.getItem("email")
-  const navigate = useNavigate()
-  const [show, setShow] = useState(false);
+  const username = localStorage.getItem("username");
+  const email = localStorage.getItem("email");
+  const navigate = useNavigate();
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const navi = ()=>{
-    navigate("/home")
-  }
+  const navi = () => {
+    navigate("/home");
+  };
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
   return (
-   <>
-
-  
-
-     
-      <Offcanvas show={show} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Dashboard</Offcanvas.Title>
-        
-
-        </Offcanvas.Header>
-        <Offcanvas.Body>
-             
-               
-   <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Nav className="me-auto" style={{display:"block"}}>
-          <Nav.Link as={Link} to="profile">MY Profile</Nav.Link>
-          <hr />
-            <Nav.Link as={Link} to="balance">Balance Inquery</Nav.Link> 
-            <hr /> 
-            <Nav.Link as={Link} to="account">Account Info</Nav.Link>
-            <hr /> 
-            <Nav.Link as={Link} to="deposit">Deposit Money</Nav.Link>  
-            <hr /> 
-            <Nav.Link as={Link} to="withdraw">Withdraw Money</Nav.Link> 
-            <hr />
-            <Nav.Link as={Link} to="statement">Mini Statement</Nav.Link> 
-            <hr />
-            <Nav.Link as={Link} to="resetPassword">ResetPassword</Nav.Link>
-            <hr />
-            <Button onClick={navi} variant="outline-primary">Logout</Button>
-           
-          </Nav>
-      </Container>
-    </Navbar>
-       
-
-
-        </Offcanvas.Body>
-      </Offcanvas>
-     
-      <Navbar expand="lg" style={{ backgroundColor: 'aquamarine', fontSize:"25px" }}>
-      <Container className="text-success">
-         Welcome To National Bank
+    <Container fluid style={{ backgroundColoe:"#E5E8E7", padding: 0, overflowX: 'hidden' }}>
+      {/* Full-width Main Navbar */}
+      <Navbar expand="lg" style={{ backgroundColor: '#010114', fontSize: "25px", width: '100%', padding:"20px" }}>
+        <Container className="text-success">
+          Welcome To National Bank
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-         
-          
           </Nav>
-      
-      
-     Name: {username}
-     
-      </Container>
-     
-    </Navbar>
- 
+          Name: {username}
+          <Button variant="outline-light" onClick={toggleSidebar} className="d-lg-none">
+            <IoReorderThreeSharp />
+          </Button>
+        </Container>
+      </Navbar>
 
-   
-    <Button variant="lighter" onClick={handleShow} ><IoReorderThreeSharp /></Button>
-        
+      {/* Sidebar and Main Content */}
+      <Row>
+        {/* Sidebar */}
+        <Col md={2} style={{ backgroundColor: '#010114', minHeight: '100vh', padding: '20px', display: sidebarOpen ? 'block' : 'none' }} className="d-lg-block">
+          <Navbar expand="lg" style={{ backgroundColor: '#010114' }}>
+            <Nav className="me-auto" style={{ display: "block", color: '#fff' }}>
+              <Nav.Link as={Link} to="profile" style={{ color: '#fff' }}>MY Profile</Nav.Link>
+              <hr style={{ borderColor: '#444' }} />
+              <Nav.Link as={Link} to="balance" style={{ color: '#fff' }}>Balance Inquiry</Nav.Link>
+              <hr style={{ borderColor: '#444' }} />
+              <Nav.Link as={Link} to="account" style={{ color: '#fff' }}>Account Info</Nav.Link>
+              <hr style={{ borderColor: '#444' }} />
+              <Nav.Link as={Link} to="deposit" style={{ color: '#fff' }}>Deposit Money</Nav.Link>
+              <hr style={{ borderColor: '#444' }} />
+              <Nav.Link as={Link} to="withdraw" style={{ color: '#fff' }}>Withdraw Money</Nav.Link>
+              <hr style={{ borderColor: '#444' }} />
+              <Nav.Link as={Link} to="statement" style={{ color: '#fff' }}>Mini Statement</Nav.Link>
+              <hr style={{ borderColor: '#444' }} />
+              <Nav.Link as={Link} to="resetPassword" style={{ color: '#fff' }}>Reset Password</Nav.Link>
+              <hr style={{ borderColor: '#444' }} />
+              <Button onClick={navi} variant="outline-light" style={{ width: '100%' }}>Logout</Button>
+            </Nav>
+          </Navbar>
+        </Col>
 
-     
-   
-   
-   
-   
-   <main>
-    <Outlet/>
-   </main>
-   
-   </>
-  )
-}
+        {/* Main Content */}
+        <Col md={10} style={{ padding: '20px', backgroundColor: '#E5E8E7', height: '100vh', overflowX: 'hidden' }}>
+          <main>
+            <Outlet /> {/* This will render the BalanceInquery component */}
+          </main>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
-export default Dash
+export default Dash;
