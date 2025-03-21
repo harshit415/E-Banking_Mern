@@ -21,7 +21,7 @@ const Dash = () => {
   }
   return (
    <>
-<Button variant="lighter" onClick={handleShow} ><IoReorderThreeSharp /></Button>
+
   
 
      
@@ -37,7 +37,6 @@ const Dash = () => {
    <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" style={{display:"block"}}>
           <Nav.Link as={Link} to="profile">MY Profile</Nav.Link>
           <hr />
@@ -56,7 +55,6 @@ const Dash = () => {
             <Button onClick={navi} variant="outline-primary">Logout</Button>
            
           </Nav>
-        </Navbar.Collapse>
       </Container>
     </Navbar>
        
@@ -64,38 +62,29 @@ const Dash = () => {
 
         </Offcanvas.Body>
       </Offcanvas>
-  
-      <Navbar  bg="dark" data-bs-theme="dark" className="bg-body-tertiary" >
-      <Container className="d-flex justify-content-center align-items-center">
-        <Navbar.Brand>
-          
-          
-    <h3 className="text-info ">
-       Welcome To International Bank
-      </h3>
-
-        </Navbar.Brand>
-        <Navbar.Toggle />
      
-      </Container>
-    </Navbar>
-
-    <Navbar className="bg-body-tertiary">
-      <Container className="d-flex justify-content-center align-items-center">
-        <Navbar.Brand>
+      <Navbar expand="lg" style={{ backgroundColor: 'aquamarine', fontSize:"25px" }}>
+      <Container className="text-success">
+         Welcome To National Bank
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '100px' }}
+            navbarScroll
+          >
+         
           
-          
-    <p className="text-info ">
+          </Nav>
       
-
-       Welcome: {username} | Email: {email}
-      </p>
-
-        </Navbar.Brand>
-        <Navbar.Toggle />
+      
+     Name: {username}
      
       </Container>
+     
     </Navbar>
+ 
+
+   
+    <Button variant="lighter" onClick={handleShow} ><IoReorderThreeSharp /></Button>
         
 
      

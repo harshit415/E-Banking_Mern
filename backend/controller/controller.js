@@ -1,6 +1,8 @@
 const { autoPassword } = require('../middleware/autoPassword'); // Destructure the function
 const nodemailer = require("nodemailer");
 const costumerModel = require("../model/model")
+const transactionModel = require("../model/transactionModel");
+const model = require('../model/model');
 
 const costumerRegistration = async (req, res) => {
     const { name, email, number, date, address, city, state } = req.body;
@@ -63,8 +65,23 @@ const costumerLogin = async(req ,res) => {
     }
    
 }
-
+const Deposite = async(req, res)=>{
+    const {costumerid, status, amount} = req.body
+    const data = await transactionModel.create({
+        amount:amount,
+        status:status,
+        costumerid:costumerid
+    })
+    res.status(200).send(data)
+}
+ const balanceDisplay = async(req,res)=>{
+   const {userid}= req.query
+   const data = await transactionModel.find({costumerid: userid})
+   res.status(200).send(data)
+ }
 module.exports = {
     costumerRegistration,
-    costumerLogin
+    costumerLogin,
+    Deposite,
+    balanceDisplay
 };
