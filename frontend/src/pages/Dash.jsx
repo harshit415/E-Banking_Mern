@@ -24,17 +24,18 @@ const Dash = () => {
 
   return (
     <Container fluid style={{ backgroundColoe:"#E5E8E7", padding: 0, overflowX: 'hidden' }}>
+     
       {/* Full-width Main Navbar */}
       <Navbar expand="lg" style={{ backgroundColor: '#010114', fontSize: "25px", width: '100%', padding:"20px" }}>
-        <Container className="text-success">
-          Welcome To National Bank
+        <Container style={{color:'#B5B8B7'}}>
+          National Bank
           <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
           </Nav>
-          Name: {username}
+         <span style={{fontSize:"large"}}>Name: {username}</span> 
           <Button variant="outline-light" onClick={toggleSidebar} className="d-lg-none">
             <IoReorderThreeSharp />
           </Button>
@@ -57,7 +58,7 @@ const Dash = () => {
               <hr style={{ borderColor: '#444' }} />
               <Nav.Link as={Link} to="withdraw" style={{ color: '#fff' }}>Withdraw Money</Nav.Link>
               <hr style={{ borderColor: '#444' }} />
-              <Nav.Link as={Link} to="statement" style={{ color: '#fff' }}>Mini Statement</Nav.Link>
+              <Nav.Link as={Link} to="ministatement" style={{ color: '#fff' }}>Mini Statement</Nav.Link>
               <hr style={{ borderColor: '#444' }} />
               <Nav.Link as={Link} to="resetPassword" style={{ color: '#fff' }}>Reset Password</Nav.Link>
               <hr style={{ borderColor: '#444' }} />
@@ -67,7 +68,7 @@ const Dash = () => {
         </Col>
 
         {/* Main Content */}
-        <Col md={10} style={{ padding: '20px', backgroundColor: '#E5E8E7', height: '100vh', overflowX: 'hidden' }}>
+        <Col style={{ padding: '20px', backgroundColor: '#E5E8E7', height: '100vh', overflowX: 'hidden' }}>
           <main>
             <Outlet /> {/* This will render the BalanceInquery component */}
           </main>

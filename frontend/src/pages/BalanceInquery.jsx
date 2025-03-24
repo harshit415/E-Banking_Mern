@@ -24,7 +24,7 @@ const BalanceInquery = () => {
     loadData();
   }, []);
 
-  balance.forEach((e) => {
+  balance.map((e) => {
     if (e.status === "credited") {
       creditedAmount += e.amount;
     }
@@ -36,30 +36,34 @@ const BalanceInquery = () => {
   netbalance = creditedAmount - debitedAmount;
 
   return (
-    <Container fluid style={{ minHeight: "100vh", padding: "20px" }}>
-      <Row className="justify-content-center">
-        <Col xs={12} sm={10} md={8} lg={6} xl={6}>
-          <Card className="text-center">
-            <Card.Header style={{ backgroundColor: "blue", color: "white" }}>
-              <h4>Balance Inquiry</h4>
-            </Card.Header>
-            <Card.Body>
-              <Card.Text>
-                <Row className="mb-3">
-                  <div><strong>Credited Amount: {creditedAmount}</strong></div>
-                  <div><strong>Debited Amount: {debitedAmount}</strong></div>
-                  <hr />
-                  <strong>Net Balance: {netbalance}</strong>
-                </Row>
-              </Card.Text>
-            </Card.Body>
-            <Card.Footer style={{ backgroundColor: "blue", color: "white" }}>
-              National Bank
-            </Card.Footer>
-          </Card>
-        </Col>
-      </Row>
-    </Container>
+    <Container fluid style={{ padding: "50px 20px"}}>
+    <Row className="justify-content-center">
+      <Col xs={12} sm={10} md={8} lg={6}>
+        <Card className="shadow-lg border-0" style={{ backgroundColor: "#010114", color: "white", borderRadius: "15px" }}>
+          <Card.Body className="p-3 p-md-4 text-center">
+            <h2 className="mb-3 mb-md-4" style={{ fontWeight: "bold", color: "#ffffff", fontSize: "24px" }}>
+              Balance Inquiry
+            </h2>
+            <hr style={{ borderTop: "2px solid #ffffff", opacity: "0.2", margin: "1rem 0" }} />
+            <div className="d-flex flex-column flex-md-row justify-content-between mb-3">
+              <div className="text-center text-md-start mb-3 mb-md-0">
+                <h5 style={{ color: "#00ff00", fontWeight: "bold", fontSize: "18px" }}>Credited</h5>
+                <p style={{ fontSize: "18px", fontWeight: "500" }}>{creditedAmount}</p>
+              </div>
+              <div className="text-center text-md-end">
+                <h5 style={{ color: "#ff0000", fontWeight: "bold", fontSize: "18px" }}>Debited</h5>
+                <p style={{ fontSize: "18px", fontWeight: "500" }}>{debitedAmount}</p>
+              </div>
+            </div>
+            <div className="mt-3 mt-md-4">
+              <h4 style={{ color: "#ffffff", fontWeight: "bold", fontSize: "20px" }}>Net Balance</h4>
+              <p style={{ fontSize: "22px", fontWeight: "600", color: "#00ff00" }}>{netbalance}</p>
+            </div>
+          </Card.Body>
+        </Card>
+      </Col>
+    </Row>
+  </Container>
   );
 };
 

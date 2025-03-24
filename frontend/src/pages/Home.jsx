@@ -18,8 +18,8 @@ const Home = () => {
   }
   return (
    <>
-     <Card.Img variant="top" src="360_F_548094740_eyNpMxVjD93hjhOsMUTt3lhBHHvxJQka.jpg" />
-
+     <Card.Img variant="top" src="Hero-Banner-Desktop.png" />
+          
      <Container>
       {/* Heading */}
       <h3 className="mt-3 text-center">World Class Banking Services</h3>

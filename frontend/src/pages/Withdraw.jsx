@@ -24,6 +24,9 @@ const Withdraw = () => {
   return (
     <>
    <Container fluid >
+  
+   <h2 className="text-center">Instantly Widthdraw money</h2>
+<hr />
       <Row className="justify-content-center">
       <Col xs={12} sm={8} md={6} lg={6} className="mx-auto mt-5"> 
       <Card className="pt-2" style={{paddingBottom:"20px", backgroundColor:"#010114", color:"white"}}>
@@ -34,9 +37,8 @@ const Withdraw = () => {
           <Form.Label>Enter Amount</Form.Label>
           <Form.Control style={{ backgroundColor:"#010114", color:"white", width:"70%", margin:"auto"}} type="email" name="amount" value={amount}  onChange={(e)=>setAmount(e.target.value)} />
         </Form.Group>
-        <Button className="mt-3" variant="primary" type="submit" onClick={handleSubmit} >
-        Widthdraw money
-      </Button>
+        <Button className="mt-3" variant="outline-light" type="submit" onClick={handleSubmit}>Widthdraw</Button>
+
         </div>
         </Card>
         </Col>

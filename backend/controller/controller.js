@@ -2,7 +2,7 @@ const { autoPassword } = require('../middleware/autoPassword'); // Destructure t
 const nodemailer = require("nodemailer");
 const costumerModel = require("../model/model")
 const transactionModel = require("../model/transactionModel");
-const model = require('../model/model');
+
 
 const costumerRegistration = async (req, res) => {
     const { name, email, number, date, address, city, state } = req.body;
@@ -79,9 +79,54 @@ const Deposite = async(req, res)=>{
    const data = await transactionModel.find({costumerid: userid})
    res.status(200).send(data)
  }
+ const accountStatement = async(req,res)=>{
+    const {userid}= req.query
+    const data = await transactionModel.find({costumerid: userid}).sort({date:-1}).limit(10)
+    res.status(200).send(data)
+ }
+ const miniStatement = async(req,res)=>{
+    const {userid, endDate, beginDate}= req.body;
+    const data = await transactionModel.find({$and:[{costumerid:userid},{"date": {
+        $gte: beginDate,
+        $lte: endDate
+    }}]}).sort({data:-1})
+  
+    res.send(data)
+ }
+ const changePassword = async (req, res) => {
+    const { oldpass, newpass, renewpass, userid } = req.body;
+
+    try {
+        const customer = await costumerModel.findById(userid);
+
+        if (!customer) {
+            return res.status(404).send({ msg: "User not found" });
+        }
+
+        if (customer.password !== oldpass) {
+            return res.status(400).send({ msg: "Old password doesn't match" });
+        }
+
+        if (newpass !== renewpass) {
+            return res.status(400).send({ msg: "New passwords don't match" });
+        }
+
+        await costumerModel.findByIdAndUpdate(userid, { password: newpass });
+
+        res.send({ msg: "Password successfully changed" });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send({ msg: "Internal server error" });
+    }
+};
+ 
 module.exports = {
     costumerRegistration,
     costumerLogin,
     Deposite,
-    balanceDisplay
+    balanceDisplay,
+    accountStatement,
+    miniStatement,
+    changePassword
+
 };

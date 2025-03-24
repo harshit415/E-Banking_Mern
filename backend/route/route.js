@@ -6,6 +6,9 @@ route.post("/register", costumerController.costumerRegistration)
 route.post("/login", costumerController.costumerLogin)
 route.post("/transaction", costumerController.Deposite)
 route.get("/balance", costumerController.balanceDisplay)
+route.get("/accountStatement", costumerController.accountStatement)
+route.post("/miniStatement", costumerController.miniStatement)
+route.post("/changePassword", costumerController.changePassword)
 
 
 
