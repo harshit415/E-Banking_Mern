@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Figure from 'react-bootstrap/Figure';
+import Image from 'react-bootstrap/Image';
+
 import Button from 'react-bootstrap/Button';
 import { IoMdCheckboxOutline } from "react-icons/io";
 import {useNavigate} from 'react-router-dom'
@@ -18,15 +20,30 @@ const Home = () => {
   }
   return (
    <>
-     <Card.Img variant="top" src="Hero-Banner-Desktop.png" />
-          
+   <div style={{
+      width: '100%',
+      height: window.innerWidth < 768 ? '50vh' : '60vh',
+      overflow: 'hidden',
+      position: 'relative'
+    }}>
+      <img
+        src="herosection.jpg"
+        alt="Hero Section"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          objectPosition: 'center'
+        }}
+      />
+    </div>
      <Container>
       {/* Heading */}
-      <h3 className="mt-3 text-center">World Class Banking Services</h3>
+      <h3 className="mt-5 text-center">World Class Banking Services</h3>
       <hr />
 
       {/* Cards Section */}
-      <Row>
+      <Row className="mt-3">
         {/* Card 1: Mobile Banking */}
         <Col sm={12} md={6} lg={4} className="mb-4 d-flex justify-content-center">
           <Card style={{ width: '18rem',height:"100%" }}>

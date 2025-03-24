@@ -140,6 +140,8 @@ const Registration = () => {
     </Card>
     </Col>
     </Row>
+            <ToastContainer/>
+    
     </Container>
    
    </>
